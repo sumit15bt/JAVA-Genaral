@@ -1,0 +1,42 @@
+package practice2;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
+/**
+ *
+ * @author avis
+ */
+public class Practice2 {
+
+    public static void main(String[] args) throws ParseException {
+//        String havingClause="HAVING  COUNT(accountcode)%GT%5 AND  SUM(CASE WHEN interactiontype = 'TW' OR interactiontype = 'DM' THEN 1 ELSE 0 END) @EQ@1 AND SUM(queueduration) @LTE@36000";
+//        if (havingClause != null && !havingClause.equals("")) {
+//            System.out.println("havingClause >>>>>>>>>>>= " + havingClause);
+//            havingClause = havingClause.replaceAll("%LT%", "<").replaceAll("@LTE@", "<=").replaceAll("@EQ@", "=").replaceAll("@GTE@", ">=").replaceAll("%GT%", ">");
+////            qry.append(" ").append(havingClause).append("");
+//        }
+//        System.out.println("havingClause = " + havingClause);
+
+        Calendar cal = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm a");
+        String formattedTime = sdf.format(cal.getTime());
+        System.out.println("formattedTime = " + formattedTime);
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+        //  String newdate=dateFormat.format(new Date());
+        Date date = dateFormat.parse(dateFormat.format(new Date()));
+        System.out.println("date = " + date);
+
+    }
+
+}
+
+//having condition-------------> HAVING  COUNT(accountcode)%GT%5 AND  SUM(CASE WHEN interactiontype = 'TW' OR interactiontype = 'DM' THEN 1 ELSE 0 END) @EQ@1 AND SUM(queueduration) @LTE@36000 
+//condition =========> 1
+//interaction =========> equals
+//condition =========> less-than-equals
+//duration =========> 36000
