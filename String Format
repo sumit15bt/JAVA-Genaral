@@ -1,0 +1,72 @@
+package practice;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+public class Practice {
+
+//    public static String strForQuery(String str) {
+//        StringBuilder res = new StringBuilder();
+//        if (str.contains(",")) {
+//            String[] agent = str.split(",");
+//            for (String ag : agent) {
+//                res.append("'").append(ag).append("',");
+//            }
+//            res = res.deleteCharAt(res.length() - 1);
+//        } else {
+//            res.append("'").append(str).append("'");
+//        }
+//        return res.toString();
+//    }
+    public static String[] getInteractionsObject(String selected_interactions) {
+        String arr[] = null;
+
+        selected_interactions = selected_interactions.replace("[", "").replace("]", "");
+        String[] selectedinteractions = selected_interactions.split(",");
+        StringBuilder interactions = new StringBuilder();
+        for (String str : selectedinteractions) {
+            if (str.trim().equals("EMAIL")) {
+                interactions.append("EMAIL");
+            }
+            if (str.trim().equals("FACEBOOK")) {
+                interactions.append(",MSG,FB");
+            }
+            if (str.trim().equals("TWITTER")) {
+                interactions.append(",TW,DM");
+            }
+        }
+        System.out.println("interactions = " + interactions);
+        arr = getObjectStringArr(interactions.toString());
+
+        return arr;
+
+    }
+
+    public static String[] getObjectStringArr(String data) {
+        String arr[] = null;
+
+        if (data != null && !data.equals("")) {
+            arr = new String[data.split(",").length];
+            String[] str = data.split(",");
+
+            for (int i = 0; i < str.length; i++) {
+                arr[i] = str[i].trim();
+            }
+        }
+
+        return arr;
+    }
+
+    public static void main(String[] args) throws JSONException {
+
+        String selected_interactions = "[EMAIL, FACEBOOK, TWITTER]";
+        String[] str = getInteractionsObject(selected_interactions);
+        for (String st : str) {
+            System.out.println("st = " + st);
+        }
+
+//        System.out.println(strForQuery("campdomainthree,newcamp"));
+    }
+
+}
